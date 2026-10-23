@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Un pequeño regalo para Angge, creado con cariño y amistad."
+    >
+
+    <title>Para Angge</title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Estilos: los crearemos en el siguiente paso -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript: lo conectaremos después -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- =====================================
+         1. PANTALLA DE BIENVENIDA
+    ====================================== -->
+
+    <section
+        class="welcome-screen"
+        id="welcomeScreen"
+        aria-labelledby="welcomeTitle"
+    >
+        <div class="welcome-decoration" aria-hidden="true">
+            <span class="decoration-leaf leaf-one"></span>
+            <span class="decoration-leaf leaf-two"></span>
+            <span class="decoration-leaf leaf-three"></span>
+        </div>
+
+        <div class="welcome-content">
+
+            <p class="eyebrow">
+                UN PEQUEÑO DETALLE PARA TI
+            </p>
+
+            <h1 id="welcomeTitle">
+                Hola, Angge
+            </h1>
+
+            <p class="welcome-description">
+                Hay cosas bonitas que merecen ser recordadas,
+                y hoy quiero compartir una contigo.
+            </p>
+
+            <button
+                class="enter-button"
+                id="enterButton"
+                type="button"
+                aria-controls="giftScreen"
+            >
+                <span>Descubrir mi regalo</span>
+                <span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+
+            <p class="welcome-footer">
+                Hecho con amistad, especialmente para ti
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================
+         2. EXPERIENCIA PRINCIPAL
+    ====================================== -->
+
+    <main
+        class="gift-screen"
+        id="giftScreen"
+        hidden
+    >
+
+        <!-- Fondo y decoración ambiental -->
+        <div
+            class="ambient-background"
+            aria-hidden="true"
+        ></div>
+
+        <div
+            class="floating-particles"
+            id="floatingParticles"
+            aria-hidden="true"
+        ></div>
+
+        <!-- Encabezado -->
+        <header class="page-header">
+
+            <a class="site-signature" href="#giftScreen">
+                <span class="signature-symbol" aria-hidden="true">✳</span>
+                <span>Un detalle para Angge</span>
+            </a>
+
+            <p class="header-note">
+                Un pequeño rincón de buenos recuerdos
+            </p>
+
+        </header>
+
+
+        <!-- Contenido principal -->
+        <section
+            class="main-content"
+            aria-label="Regalo para Angge"
+        >
+
+            <!-- Columna de la fotografía -->
+            <section
+                class="photo-section"
+                aria-labelledby="photoHeading"
+            >
+
+                <div class="photo-heading">
+                    <p class="eyebrow">
+                        UN RECUERDO BONITO
+                    </p>
+
+                    <h2 id="photoHeading">
+                        Que esa sonrisa<br>
+                        nunca se apague
+                    </h2>
+                </div>
+
+                <!--
+                    Coloca tu fotografía en la misma carpeta
+                    y llámala angge.jpg.
+
+                    Si tu foto tiene otro formato, cambia
+                    el nombre en el atributo src.
+                -->
+
+                <figure class="photo-frame">
+
+                    <div class="photo-inner">
+
+                        <img
+                            class="angge-photo"
+                            id="anggePhoto"
+                            src="WhatsApp Image 2026-10-22 at 8.41.00 PM.jpeg"
+                            alt="Fotografía de Angge"
+                        >
+
+                    </div>
+
+                    <figcaption class="photo-caption">
+                        <span class="caption-heart" aria-hidden="true">♡</span>
+                        <span>Un momento para guardar</span>
+                    </figcaption>
+
+                </figure>
+
+                <p class="photo-note">
+                    Ojalá la vida te regale muchos momentos
+                    en los que puedas sonreír así.
+                </p>
+
+            </section>
+
+
+            <!-- Columna de la carta -->
+            <article
+                class="letter-section"
+                aria-labelledby="letterHeading"
+            >
+
+                <div class="letter-card">
+
+                    <div
+                        class="letter-decoration"
+                        aria-hidden="true"
+                    >
+                        <span class="letter-leaf"></span>
+                        <span class="letter-heart">♡</span>
+                    </div>
+
+                    <p class="eyebrow">
+                        ALGO QUE QUIERO RECORDARTE
+                    </p>
+
+                    <h2 id="letterHeading">
+                        Para ti, Angge
+                    </h2>
+
+                    <div class="letter-divider" aria-hidden="true">
+                        <span></span>
+                        <span class="divider-symbol">✳</span>
+                        <span></span>
+                    </div>
+
+                    <div class="letter-body">
+
+                        <p>
+                            A veces, entre tantas cosas que pasan
+                            en el día, olvidamos detenernos un
+                            momento y recordar las cosas bonitas
+                            que también tenemos en nuestra vida.
+                        </p>
+
+                        <p>
+                            Por eso quería dejarte este pequeño
+                            detalle, para recordarte que mereces
+                            estar feliz, reírte por cualquier
+                            tontería y disfrutar de esos momentos
+                            sencillos que terminan convirtiéndose
+                            en buenos recuerdos.
+                        </p>
+
+                        <p>
+                            Ojalá que, incluso cuando tengas un
+                            día complicado, encuentres algo que
+                            te devuelva esa sonrisa. Y que cuando
+                            veas esta foto recuerdes que hay
+                            momentos que vale la pena conservar.
+                        </p>
+
+                        <p>
+                            No todos los días tienen que ser
+                            perfectos para que exista algo bonito
+                            en ellos. A veces basta con una
+                            conversación, una risa inesperada o
+                            un recuerdo que te haga sentir mejor.
+                        </p>
+
+                        <p class="letter-closing">
+                            Así que cuídate mucho, sigue siendo tú
+                            y no dejes de disfrutar las pequeñas
+                            cosas de la vida y sobre todo nunca te rindas
+                        </p>
+
+                    </div>
+
+                    <div class="letter-signature">
+                        <span>Con mucho aprecio,</span>
+                        <span class="signature-name">
+                           marco
+                        </span>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- Mensaje final -->
+        <section
+            class="closing-section"
+            aria-label="Mensaje final"
+        >
+
+            <span class="closing-ornament" aria-hidden="true">
+                ✳
+            </span>
+
+            <p class="closing-message">
+                Que nunca te falten razones para sonreír.
+            </p>
+
+            <p class="closing-submessage">
+                Y que siempre encuentres algo bonito en cada día.
+            </p>
+
+            <div class="closing-decoration" aria-hidden="true">
+                <span>♡</span>
+                <span>✦</span>
+                <span>♡</span>
+            </div>
+
+        </section>
+
+
+       
+        <!-- Música -->
+        <section
+            class="music-section"
+            aria-label="Canción dedicada"
+        >
+
+            <div class="music-information">
+
+                <span
+                    class="music-icon"
+                    aria-hidden="true"
+                >
+                    ♫
+                </span>
+
+                <div class="music-text">
+                    <p class="music-label">
+                        UNA CANCIÓN PARA ACOMPAÑAR EL MOMENTO
+                    </p>
+
+                    <p class="music-title">
+                        Sueña
+                    </p>
+
+                    <p class="music-artist">
+                        Luis Miguel
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- AUDIO: aquí se carga el archivo MP3 -->
+            <audio id="backgroundMusic" preload="none">
+                <source src="Luis Miguel - Sueña (Video Con Letra).mp3" type="audio/mpeg">
+                Tu navegador no puede reproducir este audio.
+            </audio>
+
+            <!-- Botón para reproducir o pausar -->
+            <button
+                class="music-button"
+                id="musicButton"
+                type="button"
+                aria-label="Reproducir canción"
+            >
+                Escuchar canción
+                <span aria-hidden="true">♫</span>
+            </button>
+
+        </section>
+
+
+        <!-- Pie de página -->
+        <footer class="page-footer">
+
+            <p>
+                Creado con aprecio y amistad
+            </p>
+
+            <p class="footer-symbol" aria-hidden="true">
+                ♡
+            </p>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>

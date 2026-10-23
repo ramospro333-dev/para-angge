@@ -1,0 +1,1470 @@
+
+/* =====================================================
+   1. CONFIGURACIÓN GENERAL
+===================================================== */
+
+:root {
+    --forest-dark: #101b17;
+    --forest-deep: #16251e;
+    --forest-mid: #24382b;
+    --forest-soft: #344a37;
+
+    --cream: #f1e7d6;
+    --cream-muted: #c8c6b5;
+
+    --gold: #d0a36b;
+    --gold-light: #e6c99a;
+
+    --autumn-rust: #b96c4d;
+    --autumn-wine: #78453f;
+    --autumn-amber: #d4a052;
+
+    --text-light: #eee7d9;
+    --text-muted: #bdc6b8;
+
+    --font-body: "DM Sans", sans-serif;
+    --font-display: "Playfair Display", Georgia, serif;
+
+    --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background: var(--forest-dark);
+    color: var(--text-light);
+
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 5px;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+::selection {
+    background: var(--gold);
+    color: var(--forest-dark);
+}
+
+
+/* =====================================================
+   2. FONDO AMBIENTAL
+===================================================== */
+
+body::before {
+    position: fixed;
+    z-index: -2;
+    inset: 0;
+
+    content: "";
+
+    background:
+        radial-gradient(
+            ellipse at 12% 18%,
+            rgba(92, 116, 76, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 88% 72%,
+            rgba(160, 94, 56, 0.12),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #111c17 0%,
+            #18271e 48%,
+            #101a16 100%
+        );
+}
+
+.ambient-background {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 45%,
+            rgba(92, 124, 85, 0.09),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 85% 12%,
+            rgba(200, 147, 87, 0.07),
+            transparent 35%
+        );
+}
+
+.gift-screen {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   3. PANTALLA DE BIENVENIDA
+===================================================== */
+
+.welcome-screen {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    min-height: 100vh;
+    min-height: 100svh;
+
+    padding: 28px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 40%,
+            rgba(64, 87, 63, 0.40),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #101b16,
+            #1b2b20 55%,
+            #111b16
+        );
+}
+
+.welcome-screen::before,
+.welcome-screen::after {
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    content: "";
+
+    border: 1px solid rgba(208, 163, 107, 0.12);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.welcome-screen::before {
+    top: -210px;
+    left: -140px;
+
+    box-shadow:
+        0 0 0 35px rgba(208, 163, 107, 0.025),
+        0 0 0 70px rgba(208, 163, 107, 0.018);
+}
+
+.welcome-screen::after {
+    right: -190px;
+    bottom: -240px;
+
+    box-shadow:
+        0 0 0 45px rgba(208, 163, 107, 0.025),
+        0 0 0 90px rgba(208, 163, 107, 0.018);
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 560px;
+
+    text-align: center;
+
+    animation: welcome-appear 1.2s var(--ease-soft) both;
+}
+
+.eyebrow {
+    margin: 0;
+
+    color: var(--gold-light);
+
+    font-size: 0.68rem;
+    font-weight: 600;
+
+    letter-spacing: 0.24em;
+    line-height: 1.8;
+    text-transform: uppercase;
+}
+
+.welcome-content h1 {
+    margin: 22px 0 18px;
+
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: clamp(3.6rem, 9vw, 6rem);
+    font-weight: 400;
+
+    letter-spacing: -0.055em;
+    line-height: 1.08;
+}
+
+.welcome-description {
+    max-width: 370px;
+
+    margin: 0 auto;
+
+    color: var(--text-muted);
+
+    font-size: 0.98rem;
+    line-height: 1.9;
+}
+
+.enter-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
+    min-height: 54px;
+    margin-top: 38px;
+    padding: 0 24px;
+
+    border: 1px solid rgba(230, 201, 154, 0.62);
+    border-radius: 3px;
+
+    background: rgba(230, 201, 154, 0.07);
+    color: var(--cream);
+
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.035em;
+
+    cursor: pointer;
+
+    transition:
+        background 250ms ease,
+        border-color 250ms ease,
+        transform 250ms ease;
+}
+
+.enter-button:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--gold-light);
+    background: rgba(230, 201, 154, 0.15);
+}
+
+.button-arrow {
+    color: var(--gold-light);
+    font-size: 1.15rem;
+
+    transition: transform 250ms ease;
+}
+
+.enter-button:hover .button-arrow {
+    transform: translateX(4px);
+}
+
+.welcome-footer {
+    margin: 48px 0 0;
+
+    color: rgba(200, 198, 181, 0.55);
+
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+}
+
+.welcome-decoration {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.decoration-leaf {
+    position: absolute;
+
+    display: block;
+
+    width: 28px;
+    height: 15px;
+
+    border: 1px solid rgba(207, 160, 105, 0.26);
+    border-radius: 100% 0 100% 0;
+
+    transform: rotate(-35deg);
+}
+
+.leaf-one {
+    top: 23%;
+    left: 13%;
+}
+
+.leaf-two {
+    top: 68%;
+    right: 15%;
+
+    transform: rotate(35deg);
+}
+
+.leaf-three {
+    top: 16%;
+    right: 23%;
+
+    width: 18px;
+    height: 11px;
+
+    border-color: rgba(151, 175, 134, 0.3);
+    transform: rotate(65deg);
+}
+
+.welcome-screen.is-leaving {
+    animation: welcome-exit 850ms ease forwards;
+}
+
+.gift-screen.is-entering {
+    animation: gift-enter 900ms var(--ease-soft) both;
+}
+
+
+/* =====================================================
+   4. ENCABEZADO
+===================================================== */
+
+.page-header {
+    position: relative;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    width: min(1160px, calc(100% - 80px));
+
+    margin: 0 auto;
+    padding: 30px 0;
+
+    border-bottom: 1px solid rgba(232, 220, 198, 0.10);
+}
+
+.site-signature {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: 1rem;
+
+    text-decoration: none;
+}
+
+.signature-symbol {
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+}
+
+.header-note {
+    margin: 0;
+
+    color: rgba(200, 198, 181, 0.65);
+
+    font-size: 0.72rem;
+    letter-spacing: 0.045em;
+}
+
+
+/* =====================================================
+   5. COMPOSICIÓN PRINCIPAL
+===================================================== */
+
+.main-content {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 0.92fr)
+        minmax(0, 1.08fr);
+
+    align-items: start;
+    gap: clamp(38px, 7vw, 100px);
+
+    width: min(1100px, calc(100% - 80px));
+
+    margin: 0 auto;
+    padding: 80px 0 100px;
+}
+
+.photo-section {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo-heading {
+    align-self: stretch;
+
+    margin-bottom: 28px;
+
+    text-align: center;
+}
+
+.photo-heading h2 {
+    margin: 18px 0 0;
+
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 400;
+
+    letter-spacing: -0.04em;
+    line-height: 1.28;
+}
+
+
+/* =====================================================
+   6. MARCO DE LA FOTOGRAFÍA
+===================================================== */
+
+.photo-frame {
+    position: relative;
+
+    width: 100%;
+    max-width: 390px;
+
+    margin: 0;
+    padding: 12px;
+
+    border: 1px solid rgba(216, 177, 122, 0.50);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(226, 199, 156, 0.11),
+            rgba(226, 199, 156, 0.025)
+        );
+
+    box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.24),
+        0 0 0 6px rgba(208, 163, 107, 0.025);
+
+    transition:
+        transform 400ms var(--ease-soft),
+        box-shadow 400ms ease;
+}
+
+.photo-frame::before {
+    position: absolute;
+    z-index: -1;
+
+    top: 18px;
+    right: -15px;
+    bottom: -15px;
+    left: 18px;
+
+    content: "";
+
+    border: 1px solid rgba(173, 133, 91, 0.23);
+
+    pointer-events: none;
+}
+
+.photo-frame:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 30px 75px rgba(0, 0, 0, 0.31),
+        0 0 0 6px rgba(208, 163, 107, 0.035);
+}
+
+.photo-inner {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 3 / 4;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            150deg,
+            #344b3b,
+            #202e25 60%,
+            #48352a
+        );
+}
+
+.photo-inner::after {
+    position: absolute;
+    inset: 0;
+
+    content: "";
+
+    border: 1px solid rgba(245, 230, 205, 0.08);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(13, 25, 18, 0.02) 45%,
+            rgba(13, 25, 18, 0.28) 100%
+        );
+
+    pointer-events: none;
+}
+
+.angge-photo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    color: var(--cream-muted);
+    font-size: 0.8rem;
+
+    transition: transform 700ms var(--ease-soft);
+}
+
+.photo-frame:hover .angge-photo {
+    transform: scale(1.025);
+}
+
+.photo-caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 17px 4px 5px;
+
+    color: var(--cream-muted);
+
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.caption-heart {
+    color: #cf8b77;
+    font-size: 1.25rem;
+}
+
+.photo-note {
+    max-width: 330px;
+
+    margin: 30px auto 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.84rem;
+    line-height: 1.9;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   7. CARTA
+===================================================== */
+
+.letter-section {
+    min-width: 0;
+}
+
+.letter-card {
+    position: relative;
+
+    padding: clamp(30px, 4vw, 50px);
+
+    border: 1px solid rgba(224, 200, 163, 0.13);
+
+    background:
+        linear-gradient(
+            155deg,
+            rgba(247, 237, 217, 0.055),
+            rgba(247, 237, 217, 0.018)
+        );
+
+    box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.12);
+
+    overflow: hidden;
+}
+
+.letter-card::before {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 60px;
+    height: 2px;
+
+    content: "";
+
+    background: linear-gradient(
+        90deg,
+        var(--gold),
+        transparent
+    );
+}
+
+.letter-card::after {
+    position: absolute;
+
+    right: -70px;
+    bottom: -80px;
+
+    width: 180px;
+    height: 180px;
+
+    content: "";
+
+    border: 1px solid rgba(211, 162, 104, 0.08);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 20px rgba(211, 162, 104, 0.018),
+        0 0 0 40px rgba(211, 162, 104, 0.012);
+
+    pointer-events: none;
+}
+
+.letter-decoration {
+    position: absolute;
+
+    top: 22px;
+    right: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    opacity: 0.65;
+}
+
+.letter-leaf {
+    display: block;
+
+    width: 17px;
+    height: 10px;
+
+    border: 1px solid #b98a5c;
+    border-radius: 100% 0 100% 0;
+
+    transform: rotate(-30deg);
+}
+
+.letter-heart {
+    color: #c88776;
+    font-size: 1rem;
+}
+
+.letter-card h2 {
+    position: relative;
+    z-index: 1;
+
+    margin: 15px 0 0;
+
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    font-weight: 400;
+
+    letter-spacing: -0.04em;
+    line-height: 1.25;
+}
+
+.letter-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    max-width: 190px;
+
+    margin: 24px 0 28px;
+}
+
+.letter-divider > span:not(.divider-symbol) {
+    flex: 1;
+
+    height: 1px;
+
+    background: rgba(208, 163, 107, 0.35);
+}
+
+.divider-symbol {
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.letter-body {
+    position: relative;
+    z-index: 1;
+}
+
+.letter-body p {
+    margin: 0 0 20px;
+
+    color: #d0d3c7;
+
+    font-size: 0.9rem;
+    line-height: 2;
+    font-weight: 400;
+}
+
+.letter-body p:last-child {
+    margin-bottom: 0;
+}
+
+.letter-body .letter-closing {
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-style: italic;
+    line-height: 1.85;
+}
+
+.letter-signature {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    margin-top: 34px;
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(224, 200, 163, 0.13);
+
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.signature-name {
+    color: var(--gold-light);
+
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+
+/* =====================================================
+   8. PARTÍCULAS DEL FONDO
+===================================================== */
+
+.floating-particles {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.ambient-particle {
+    position: absolute;
+    top: -10px;
+    left: var(--particle-x);
+
+    display: block;
+
+    width: var(--particle-size);
+    height: var(--particle-size);
+
+    border-radius: 50%;
+
+    background: rgba(223, 194, 140, 0.68);
+
+    box-shadow:
+        0 0 9px rgba(223, 194, 140, 0.23);
+
+    opacity: 0;
+
+    animation:
+        particle-float var(--particle-duration) linear
+        var(--particle-delay) infinite;
+}
+
+
+/* =====================================================
+   9. HOJAS OTOÑALES FLOTANTES
+===================================================== */
+
+.falling-leaves {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.falling-leaf {
+    position: absolute;
+    top: -35px;
+    left: var(--leaf-left);
+
+    display: block;
+
+    width: var(--leaf-size);
+    height: calc(var(--leaf-size) * 0.65);
+
+    border-radius: 100% 0 100% 0;
+
+    background: var(--leaf-color);
+
+    opacity: 0;
+
+    box-shadow: inset -2px -1px 3px rgba(40, 24, 15, 0.12);
+
+    animation:
+        leaf-fall var(--leaf-duration) linear
+        var(--leaf-delay) infinite;
+}
+
+.falling-leaf:not(.falling-heart)::after {
+    position: absolute;
+
+    top: 50%;
+    left: 12%;
+    right: 12%;
+
+    height: 1px;
+
+    content: "";
+
+    background: rgba(246, 219, 173, 0.45);
+
+    transform: rotate(-17deg);
+}
+
+.falling-leaf.falling-heart {
+    width: auto;
+    height: auto;
+
+    border-radius: 0;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    font-size: var(--leaf-size);
+    line-height: 1;
+
+    color: var(--leaf-color);
+}
+
+
+/* =====================================================
+   10. MENSAJE FINAL
+===================================================== */
+
+.closing-section {
+    position: relative;
+    z-index: 2;
+
+    width: min(760px, calc(100% - 48px));
+
+    margin: 0 auto;
+    padding: 30px 0 90px;
+
+    text-align: center;
+}
+
+.closing-ornament {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: var(--gold);
+    font-size: 1.4rem;
+}
+
+.closing-message {
+    margin: 0;
+
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 4vw, 2.6rem);
+    font-weight: 400;
+
+    letter-spacing: -0.035em;
+    line-height: 1.4;
+}
+
+.closing-submessage {
+    margin: 14px 0 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+    line-height: 1.9;
+}
+
+.closing-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    margin-top: 25px;
+
+    color: var(--autumn-rust);
+    font-size: 0.9rem;
+}
+
+.closing-decoration span:nth-child(2) {
+    color: var(--gold);
+    font-size: 0.65rem;
+}
+
+
+/* =====================================================
+   11. MÚSICA
+===================================================== */
+
+.music-section {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+
+    width: min(860px, calc(100% - 80px));
+
+    margin: 0 auto;
+    padding: 27px 0;
+
+    border-top: 1px solid rgba(232, 220, 198, 0.12);
+    border-bottom: 1px solid rgba(232, 220, 198, 0.12);
+}
+
+.music-information {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    min-width: 0;
+}
+
+.music-icon {
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 47px;
+
+    width: 47px;
+    height: 47px;
+
+    border: 1px solid rgba(208, 163, 107, 0.38);
+    border-radius: 50%;
+
+    color: var(--gold-light);
+    font-size: 1.25rem;
+}
+
+.music-text {
+    min-width: 0;
+}
+
+.music-label {
+    margin: 0 0 3px;
+
+    color: var(--text-muted);
+
+    font-size: 0.6rem;
+    font-weight: 600;
+
+    letter-spacing: 0.13em;
+    line-height: 1.7;
+}
+
+.music-title {
+    margin: 0;
+
+    color: var(--cream);
+
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.45;
+}
+
+.music-artist {
+    margin: 1px 0 0;
+
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.music-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    min-height: 45px;
+    padding: 0 19px;
+
+    border: 1px solid rgba(208, 163, 107, 0.42);
+    border-radius: 3px;
+
+    background: transparent;
+    color: var(--cream);
+
+    font-size: 0.75rem;
+    font-weight: 500;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition:
+        background 250ms ease,
+        border-color 250ms ease;
+}
+
+.music-button:hover {
+    border-color: var(--gold);
+    background: rgba(208, 163, 107, 0.10);
+}
+
+.music-button span {
+    color: var(--gold-light);
+    font-size: 1rem;
+}
+
+
+/* =====================================================
+   12. PIE DE PÁGINA
+===================================================== */
+
+.page-footer {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    padding: 35px 24px 28px;
+
+    text-align: center;
+}
+
+.page-footer p {
+    margin: 0;
+
+    color: rgba(200, 198, 181, 0.58);
+
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+}
+
+.page-footer .footer-symbol {
+    color: #c88776;
+    font-size: 1rem;
+}
+
+
+/* =====================================================
+   13. ANIMACIONES
+===================================================== */
+
+@keyframes welcome-appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes welcome-exit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.025);
+        visibility: hidden;
+    }
+}
+
+@keyframes gift-enter {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+    }
+
+    12% {
+        opacity: 0.65;
+    }
+
+    70% {
+        opacity: 0.35;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(24px, 100vh, 0);
+    }
+}
+
+@keyframes leaf-fall {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -3vh, 0) rotate(0deg);
+    }
+
+    10% {
+        opacity: 0.78;
+    }
+
+    50% {
+        transform: translate3d(35px, 48vh, 0) rotate(190deg);
+    }
+
+    85% {
+        opacity: 0.58;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(-25px, 108vh, 0) rotate(370deg);
+    }
+}
+
+
+/* =====================================================
+   14. TABLETAS
+===================================================== */
+
+@media (max-width: 900px) {
+    .page-header {
+        width: calc(100% - 48px);
+    }
+
+    .main-content {
+        width: calc(100% - 64px);
+
+        grid-template-columns:
+            minmax(0, 0.9fr)
+            minmax(0, 1.1fr);
+
+        gap: 38px;
+
+        padding-top: 60px;
+    }
+
+    .photo-heading h2 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .letter-card {
+        padding: 32px 27px;
+    }
+
+    .letter-body p {
+        font-size: 0.85rem;
+        line-height: 1.9;
+    }
+
+    .music-section {
+        width: calc(100% - 64px);
+    }
+}
+
+
+/* =====================================================
+   15. MÓVILES
+===================================================== */
+
+@media (max-width: 680px) {
+    body {
+        font-size: 14px;
+    }
+
+    .welcome-screen {
+        padding: 24px;
+    }
+
+    .welcome-content h1 {
+        font-size: clamp(3.2rem, 15vw, 4.8rem);
+    }
+
+    .welcome-description {
+        max-width: 310px;
+        font-size: 0.9rem;
+    }
+
+    .welcome-footer {
+        margin-top: 38px;
+        font-size: 0.65rem;
+    }
+
+    .leaf-one {
+        left: 8%;
+    }
+
+    .leaf-two {
+        right: 8%;
+    }
+
+    .leaf-three {
+        right: 12%;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+
+        width: calc(100% - 40px);
+
+        padding: 23px 0 20px;
+    }
+
+    .site-signature {
+        font-size: 0.98rem;
+    }
+
+    .header-note {
+        font-size: 0.68rem;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 58px;
+
+        width: calc(100% - 40px);
+
+        padding: 48px 0 65px;
+    }
+
+    /* La fotografía aparece antes que la carta. */
+    .photo-section {
+        order: 1;
+    }
+
+    .letter-section {
+        order: 2;
+    }
+
+    .photo-heading {
+        margin-bottom: 25px;
+    }
+
+    .photo-heading h2 {
+        margin-top: 14px;
+
+        font-size: clamp(2.15rem, 9vw, 3rem);
+    }
+
+    .photo-frame {
+        width: min(100%, 340px);
+    }
+
+    .photo-frame::before {
+        right: -9px;
+        bottom: -10px;
+        left: 10px;
+    }
+
+    .photo-note {
+        max-width: 300px;
+        margin-top: 24px;
+    }
+
+    .letter-card {
+        padding: 36px 25px;
+    }
+
+    .letter-card h2 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+    }
+
+    .letter-decoration {
+        top: 20px;
+        right: 19px;
+    }
+
+    .letter-body p {
+        font-size: 0.87rem;
+        line-height: 1.95;
+    }
+
+    .letter-body .letter-closing {
+        font-size: 1.02rem;
+    }
+
+    .closing-section {
+        width: calc(100% - 40px);
+        padding: 15px 0 60px;
+    }
+
+    .closing-message {
+        font-size: clamp(1.7rem, 7vw, 2.3rem);
+    }
+
+    .closing-submessage {
+        max-width: 310px;
+        margin: 13px auto 0;
+    }
+
+    .music-section {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 22px;
+
+        width: calc(100% - 40px);
+
+        padding: 25px 0;
+    }
+
+    .music-information {
+        gap: 14px;
+    }
+
+    .music-label {
+        font-size: 0.56rem;
+        letter-spacing: 0.09em;
+    }
+
+    .music-button {
+        width: 100%;
+        min-height: 48px;
+    }
+
+    .page-footer {
+        padding-top: 28px;
+        padding-bottom: 25px;
+    }
+}
+
+
+/* =====================================================
+   16. PANTALLAS MUY PEQUEÑAS
+===================================================== */
+
+@media (max-width: 360px) {
+    .main-content {
+        width: calc(100% - 32px);
+    }
+
+    .letter-card {
+        padding: 30px 20px;
+    }
+
+    .photo-heading h2 {
+        font-size: 2rem;
+    }
+
+    .eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 0.17em;
+    }
+
+    .letter-body p {
+        font-size: 0.83rem;
+    }
+
+    .music-section {
+        width: calc(100% - 32px);
+    }
+}
+
+
+/* =====================================================
+   17. ACCESIBILIDAD: MENOS MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
